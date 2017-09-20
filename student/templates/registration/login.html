@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block title %}登录{% endblock %}
+{% block content %}
+  <h1>登录</h1>
+    <p>请输入您的帐号密码。如果您还未拥有帐号，请 <a href="{% url "register" %}">注册</a></p>
+  {% if form.errors %}
+    <p>
+      您输入的用户名和密码不匹配，请重试
+    </p>
+  {% endif %}
+
+  <div class="login-form">
+    <form action="{% url 'login' %}" method="post">
+      {{ form.as_p }}
+      {% csrf_token %}
+      <input type="hidden" name="next" value="{{ next }}" />
+      <p><input type="submit" value="Log-in"></p>
+    </form>
+  </div>
+ {% endblock %}

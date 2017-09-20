@@ -1,0 +1,46 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>威久留学-{% block title %}{% endblock %}</title>
+    <link href="{% static "css/base.css" %}" rel="stylesheet">
+</head>
+<body>
+    <div id="header">
+    <span class="logo">威久留学</span>
+    {% if request.user.is_authenticated %}
+         <ul class="menu">
+          <li {% if section == "dashboard" %}class="selected"{% endif %}>
+            <a href="{% url 'homepage' %}">主页</a>
+          </li>
+          <li {% if section == "info" %}class="selected"{% endif %}>
+            <a href="{% url 'info_basic' %}">我的信息</a>
+          </li>
+          <li {% if section == "contract" %}class="selected"{% endif %}>
+            <a href="#">我的合同</a>
+           </li>
+          </ul>
+         {% endif %}
+         <span class="user">
+           {% if request.user.is_authenticated %}
+             Hello {{ request.user.first_name }},
+             <a href="{% url "logout" %}">注销</a>
+           {% else %}
+             <a href="{% url "login" %}">登录</a>
+           {% endif %}
+    </div>
+     <div id="content">
+       {% block content %}
+       {% endblock %}
+     </div>
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+     <script>
+       $(document).ready(function() {
+         {% block domready %}
+         {% endblock %}
+       });
+     </script>
+   </body>
+</html>
+
