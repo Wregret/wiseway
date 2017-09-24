@@ -87,7 +87,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'wisewaydb',
         'USER':'wisewayadmin',
-        'PASSWORD':'jasmine@',
+        'PASSWORD':'wiseway',
         'PORT':'3306',
         'CHARSET':'UTF-8',
         'HOST':'localhost',
